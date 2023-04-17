@@ -1,9 +1,11 @@
 import java.util.Random;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
 
   public static void main(String[] args) {
-    // Call the pluralize function with some example input
+    // Call the pluralize method with some example input
     int dogCount = 1;
     System.out.println("I own " + dogCount + " " + pluralize("dog", dogCount) + ".");
     
@@ -13,11 +15,14 @@ public class Main {
     int turtleCount = 0;
     System.out.println("I own " + turtleCount + " " + pluralize("turtle", turtleCount) + ".");
 
-    // Call the flipNHeads function with some example input
+    // Call the flipNHeads method with some example input
     int flipCount1 = 2;
     flipNHeads(flipCount1);
     int flipCount2 = 1;
     flipNHeads(flipCount2);
+
+    //Call the clock method
+    clock();
   }
 
   public static String pluralize(String word, int n) {
@@ -53,5 +58,40 @@ public class Main {
     // To get the correct grammar on "flip/flips" and "head/heads", we need to check both the counter and the argument n
     System.out.println("It took " + counter + "\s" + pluralize("flip", counter) + " to flip " + n + "\s" + pluralize("head", n) + " in a row");
     return;
+  }
+
+  public static void clock() {
+    LocalDateTime now = LocalDateTime.now();
+    int currentSecond = now.getSecond();
+    // We want a counter for determining how many hertz the program executes at
+    double cycles = 0;
+
+    // Since we're running this until it's manually killed, we use an infinite while loop
+    while (true) {
+      now = LocalDateTime.now();
+      int second = now.getSecond();
+      cycles++;
+      if (second != currentSecond) {
+        currentSecond = second;
+
+        // Handle which unit to use
+        String unit;     
+        if (cycles >= 1000000000) {
+          cycles /= 1000000000;
+          unit = "GHz";
+        } else if (cycles >= 1000000) {
+            cycles /= 1000000;
+            unit = "MHz";
+        } else if (cycles >= 1000) {
+            cycles /= 1000;
+            unit = "kHz";
+        } else {
+            unit = "Hz";
+        }
+        String time = now.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        System.out.println(time + "\s" + String.format("%.3f", cycles) + "\s" + unit);
+        cycles = 0;
+      }
+    }
   }
 }
