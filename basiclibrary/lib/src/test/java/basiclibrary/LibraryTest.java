@@ -20,7 +20,6 @@ class LibraryTest {
         Library classUnderTest = new Library();
         int[] rolls = classUnderTest.roll(5);
         for (int roll : rolls) {
-            System.out.println(roll);
             assertTrue(roll >= 1 && roll <= 6);
         }
     }
@@ -34,5 +33,28 @@ class LibraryTest {
         Library classUnderTest = new Library();
         int[] testArr = {1, 2, 3, 4, 5};
         assertFalse(classUnderTest.containsDuplicates(testArr));
+    }
+
+    @Test void testCalculateAverageWithDelta() {
+        Library classUnderTest = new Library();
+        int[] testArr = {2, 2, 2, 2, 2};
+        int expectedAverage = 2;
+        // set delta to avoid floating point imprecision
+        double delta = 0.00001;
+        double actualAverage = classUnderTest.calculateAverage(testArr);
+        assertEquals(expectedAverage, actualAverage, delta);
+    }
+
+    @Test void testFindSmallestSubarray() {
+        Library classUnderTest = new Library();
+        int[][] testArr = {
+                {0, 0, 0, 2, 3, 4, 5},
+                {57, 65, 65, 70, 72, 65, 51},
+                {55, 54, 60, 53, 59, 57, 61},
+                {65, 56, 55, 52, 55, 62, 57}
+        };
+        int[] expectedArr = {0, 0, 0, 2, 3, 4, 5};
+        int[] actualArr = classUnderTest.findSmallestSubarray(testArr);
+        assertArrayEquals(expectedArr, actualArr);
     }
 }
