@@ -23,6 +23,18 @@ class LibraryTest {
             assertTrue(roll >= 1 && roll <= 6);
         }
     }
+
+    @Test void testNumberOfRollsIllegalArgumentException() {
+        try {
+            Library classUnderTest = new Library();
+            classUnderTest.roll(-2);
+            // if the exception is not thrown, fail the test
+            fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
+        } catch (IllegalArgumentException e) {
+            // the exception was thrown, the test passes
+        }
+    }
+
     @Test void testContainsDuplicatesIsTrue() {
         Library classUnderTest = new Library();
         int[] testArr = {1, 2, 3, 4, 4};
@@ -35,6 +47,18 @@ class LibraryTest {
         assertFalse(classUnderTest.containsDuplicates(testArr));
     }
 
+    @Test void testContainsDuplicatesIllegalArgumentException() {
+        try {
+            Library classUnderTest = new Library();
+            int[] testArr = {};
+            classUnderTest.containsDuplicates(testArr);
+            // if the exception is not thrown, fail the test
+            fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
+        } catch (IllegalArgumentException e) {
+            // the exception was thrown, the test passes
+        }
+    }
+
     @Test void testCalculateAverageWithDelta() {
         Library classUnderTest = new Library();
         int[] testArr = {2, 2, 2, 2, 2};
@@ -43,6 +67,18 @@ class LibraryTest {
         double delta = 0.00001;
         double actualAverage = classUnderTest.calculateAverage(testArr);
         assertEquals(expectedAverage, actualAverage, delta);
+    }
+
+    @Test void testCalculateAverageIllegalArgumentException() {
+        try {
+            Library classUnderTest = new Library();
+            int[] testArr = {};
+            classUnderTest.calculateAverage(testArr);
+            // if the exception is not thrown, fail the test
+            fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
+        } catch (IllegalArgumentException e) {
+            // the exception was thrown, the test passes
+        }
     }
 
     @Test void testFindSmallestSubarray() {
@@ -56,5 +92,34 @@ class LibraryTest {
         int[] expectedArr = {0, 0, 0, 2, 3, 4, 5};
         int[] actualArr = classUnderTest.findSmallestSubarray(testArr);
         assertArrayEquals(expectedArr, actualArr);
+    }
+
+    @Test void testFindSmallestSubarrayOuterArrayIllegalArgumentException() {
+        try {
+            Library classUnderTest = new Library();
+            int[][] testArr = {};
+            classUnderTest.findSmallestSubarray(testArr);
+            // if the exception is not thrown, fail the test
+            fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
+        } catch (IllegalArgumentException e) {
+            // the exception was thrown, the test passes
+        }
+    }
+
+    @Test void testFindSmallestSubarrayInnerArrayIllegalArgumentException() {
+        try {
+            Library classUnderTest = new Library();
+            int[][] testArr = {
+                    {},
+                    {57, 65, 65, 70, 72, 65, 51},
+                    {55, 54, 60, 53, 59, 57, 61},
+                    {65, 56, 55, 52, 55, 62, 57}
+            };
+            classUnderTest.findSmallestSubarray(testArr);
+            // if the exception is not thrown, fail the test
+            fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
+        } catch (IllegalArgumentException e) {
+            // the exception was thrown, the test passes
+        }
     }
 }
