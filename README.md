@@ -25,7 +25,8 @@ Code Fellows 401 Labs 1-10
 │               ├───java
 │               │   └───basiclibrary
 │               │       └───testNumberOfRolls()
-│               │       └───testNumberOfRollsIllegalArgumentException()
+│               │       └───testRollsRange()
+│               │       └───testRollIllegalArgumentException()
 │               │       └───testContainsDuplicatesIsTrue()
 │               │       └───testContainsDuplicatesIsFalse()
 │               │       └───testContainsDuplicatesIllegalArgumentException()

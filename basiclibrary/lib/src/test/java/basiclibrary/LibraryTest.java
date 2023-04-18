@@ -24,7 +24,7 @@ class LibraryTest {
         }
     }
 
-    @Test void testNumberOfRollsIllegalArgumentException() {
+    @Test void testRollIllegalArgumentException() {
         try {
             Library classUnderTest = new Library();
             classUnderTest.roll(-2);
