@@ -24,4 +24,15 @@ class LibraryTest {
             assertTrue(roll >= 1 && roll <= 6);
         }
     }
+    @Test void testContainsDuplicatesIsTrue() {
+        Library classUnderTest = new Library();
+        int[] testArr = {1, 2, 3, 4, 4};
+        assertTrue(classUnderTest.containsDuplicates(testArr));
+    }
+
+    @Test void testContainsDuplicatesIsFalse() {
+        Library classUnderTest = new Library();
+        int[] testArr = {1, 2, 3, 4, 5};
+        assertFalse(classUnderTest.containsDuplicates(testArr));
+    }
 }

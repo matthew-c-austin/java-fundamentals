@@ -4,6 +4,9 @@
 package basiclibrary;
 
 import java.util.Random;
+import java.util.Set;
+import java.util.HashSet;
+
 public class Library {
     public int[] roll(int n) {
         Random rand = new Random();
@@ -15,5 +18,17 @@ public class Library {
             rolls[i] = roll;
         }
         return rolls;
+    }
+
+    public boolean containsDuplicates(int[] arr) {
+        // I looked up how to use hash sets in Java because they're particularly suited to this kind of problem
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (set.contains(arr[i])) {
+                return true;
+            }
+            set.add(arr[i]);
+        }
+        return false;
     }
 }
