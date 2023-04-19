@@ -129,4 +129,58 @@ public class Library {
 
         return unseenTemperatures;
     }
+
+    public List<String> tally(List<String> votesList) {
+        // The problem statement doesn't say there's exactly one winner. I've modified the return type to be a List<String> to handle multiple winners in the event of a tie.
+
+        if (votesList.isEmpty()) {
+            throw new IllegalArgumentException("Input List must not be empty.");
+        }
+
+        // Use a hash map to tally the votes and keep track of the winner and initialize a currentWinner in the hash map
+        String currentWinner = "";
+        HashMap<String, Integer> votes = new HashMap<>();
+        votes.put(currentWinner, 0);
+        // Keep track of the maximum number of votes
+        int maxVotes = 0;
+
+        for (String candidate : votesList) {
+            if (candidate.isEmpty()) {
+                throw new IllegalArgumentException("Input List must not contain empty strings.");
+            }
+
+            updateVotes(candidate, votes);
+            int candidateVotes = votes.get(candidate);
+
+            if (candidateVotes > maxVotes) {
+                currentWinner = candidate;
+                maxVotes = candidateVotes;
+            // Check if there's a tie
+            } else if (candidateVotes == maxVotes && !currentWinner.equals(candidate)) {
+                // Since there is no current winner, set it to an empty string
+                currentWinner = "";
+                maxVotes = candidateVotes;
+            }
+        }
+
+        // Create a list to store the winner or winners
+        List<String> winners = new ArrayList<>();
+
+        // Loop through the candidates again and add any tied candidates to the list of winners
+        for (String candidate : votes.keySet()) {
+            if (votes.get(candidate) == maxVotes) {
+                winners.add(candidate);
+            }
+        }
+
+        return winners;
+    }
+
+    public void updateVotes(String candidate, HashMap<String, Integer> votes) {
+        if (!votes.containsKey(candidate)) {
+            votes.put(candidate, 1);
+        }
+
+        votes.put(candidate, votes.get(candidate) + 1);
+    }
 }

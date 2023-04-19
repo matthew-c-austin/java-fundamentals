@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -175,5 +176,84 @@ class LibraryTest {
         } catch (IllegalArgumentException e) {
             // the exception was thrown, the test passes
         }
+    }
+
+    @Test
+    public void testTallForSingleWinner() {
+        Library classUnderTest = new Library();
+        List<String> votes = new ArrayList<>();
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Shrub");
+        votes.add("Hedge");
+        votes.add("Shrub");
+        votes.add("Bush");
+        votes.add("Hedge");
+        votes.add("Bush");
+        List<String> expectedWinners = new ArrayList<>();
+        expectedWinners.add("Bush");
+        List<String> actualWinners = classUnderTest.tally(votes);
+        assertEquals(expectedWinners, actualWinners);
+    }
+
+    @Test
+    public void testTallyForTie() {
+        Library classUnderTest = new Library();
+        List<String> votes = new ArrayList<>();
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Hedge");
+        votes.add("Hedge");
+        votes.add("Hedge");
+        List<String> expectedWinners = new ArrayList<>();
+        expectedWinners.add("Bush");
+        expectedWinners.add("Hedge");
+        List<String> actualWinners = classUnderTest.tally(votes);
+        assertTrue(actualWinners.containsAll(expectedWinners), "The list should contain both Bush and Hedge");
+    }
+
+    @Test void testTallyForEmptyList() {
+        try {
+            Library classUnderTest = new Library();
+            List<String> votesList = new ArrayList<>();
+            classUnderTest.tally(votesList);
+            // if the exception is not thrown, fail the test
+            fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
+        } catch (IllegalArgumentException e) {
+            // the exception was thrown, the test passes
+        }
+    }
+
+    @Test void testTallyForEmptyString() {
+        try {
+            Library classUnderTest = new Library();
+            List<String> votesList = Arrays.asList("Bush", "", "Hedge");
+            classUnderTest.tally(votesList);
+            // if the exception is not thrown, fail the test
+            fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
+        } catch (IllegalArgumentException e) {
+            // the exception was thrown, the test passes
+        }
+    }
+
+    @Test
+    public void testUpdateVotesForExistingCandidate() {
+        Library classUnderTest = new Library();
+        HashMap<String, Integer> votes = new HashMap<>();
+        votes.put("Bush", 2);
+        String candidate = "Bush";
+        classUnderTest.updateVotes(candidate, votes);
+        assertEquals(3, votes.get(candidate));
+    }
+
+    @Test
+    public void testUpdateVotesForNewCandidate() {
+        Library classUnderTest = new Library();
+        HashMap<String, Integer> votes = new HashMap<>();
+        String candidate = "Shrub";
+        classUnderTest.updateVotes(candidate, votes);
+        assertEquals(1, votes.get(candidate));
     }
 }
