@@ -22,6 +22,7 @@ public class Library {
             int roll = rand.nextInt(6) + 1;
             rolls[i] = roll;
         }
+
         return rolls;
     }
 
@@ -30,14 +31,17 @@ public class Library {
         if (arr.length == 0) {
             throw new IllegalArgumentException("Input array must not be empty.");
         }
+
         // I looked up how to use hash sets in Java because they're particularly suited to this kind of problem
         Set<Integer> set = new HashSet<>();
+
         for (int i = 0; i < arr.length; i++) {
             if (set.contains(arr[i])) {
                 return true;
             }
             set.add(arr[i]);
         }
+
         return false;
     }
 
@@ -45,36 +49,41 @@ public class Library {
         if (arr.length == 0) {
             throw new IllegalArgumentException("Input array must not be empty.");
         }
+
         int sum = 0;
+
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
         }
+
         return (double) sum / arr.length;
     }
 
-    public int[] findSmallestSubarray(int[][] arr) {
+    public int[] findLowestAverageSubArray(int[][] arr) {
         if (arr.length == 0) {
             throw new IllegalArgumentException("Input array must not be empty.");
         }
+
         // Initialize an array with nothing in it and a smallest average that caps at the primitive data type limit
-        int[] smallestSubarray = null;
-        double smallestAverage = Double.MAX_VALUE;
+        int[] lowestAverageSubArray = null;
+        double lowestAverage = Double.MAX_VALUE;
+
         // Iterate over each array and update the smallestAverage and smallestSubarray
         for (int i = 0; i < arr.length; i++) {
             int[] subArray = arr[i];
+
             if (subArray.length == 0) {
                 throw new IllegalArgumentException("Input array must not be empty.");
             }
-            int sum = 0;
-            for (int j = 0; j < subArray.length; j++) {
-                sum += subArray[j];
-            }
-            double average = (double) sum / subArray.length;
-            if (average < smallestAverage) {
-                smallestAverage = average;
-                smallestSubarray = subArray;
+
+            double average = calculateAverage(subArray);
+
+            if (average < lowestAverage) {
+                lowestAverage = average;
+                lowestAverageSubArray = subArray;
             }
         }
-        return smallestSubarray;
+
+        return lowestAverageSubArray;
     }
 }

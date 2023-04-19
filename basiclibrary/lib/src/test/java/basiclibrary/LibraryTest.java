@@ -81,7 +81,7 @@ class LibraryTest {
         }
     }
 
-    @Test void testFindSmallestSubarray() {
+    @Test void testFindLowestAverageSubArray() {
         Library classUnderTest = new Library();
         int[][] testArr = {
                 {0, 0, 0, 2, 3, 4, 5},
@@ -90,15 +90,15 @@ class LibraryTest {
                 {65, 56, 55, 52, 55, 62, 57}
         };
         int[] expectedArr = {0, 0, 0, 2, 3, 4, 5};
-        int[] actualArr = classUnderTest.findSmallestSubarray(testArr);
+        int[] actualArr = classUnderTest.findLowestAverageSubArray(testArr);
         assertArrayEquals(expectedArr, actualArr);
     }
 
-    @Test void testFindSmallestSubarrayOuterArrayIllegalArgumentException() {
+    @Test void testFindLowestAverageSubArrayOuterArrayIllegalArgumentException() {
         try {
             Library classUnderTest = new Library();
             int[][] testArr = {};
-            classUnderTest.findSmallestSubarray(testArr);
+            classUnderTest.findLowestAverageSubArray(testArr);
             // if the exception is not thrown, fail the test
             fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
         } catch (IllegalArgumentException e) {
@@ -106,7 +106,7 @@ class LibraryTest {
         }
     }
 
-    @Test void testFindSmallestSubarrayInnerArrayIllegalArgumentException() {
+    @Test void testFindLowestAverageSubArrayInnerArrayIllegalArgumentException() {
         try {
             Library classUnderTest = new Library();
             int[][] testArr = {
@@ -115,7 +115,7 @@ class LibraryTest {
                     {55, 54, 60, 53, 59, 57, 61},
                     {65, 56, 55, 52, 55, 62, 57}
             };
-            classUnderTest.findSmallestSubarray(testArr);
+            classUnderTest.findLowestAverageSubArray(testArr);
             // if the exception is not thrown, fail the test
             fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
         } catch (IllegalArgumentException e) {
