@@ -3,9 +3,7 @@
  */
 package basiclibrary;
 
-import java.util.Random;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.*;
 
 public class Library {
     public int[] roll(int n) {
@@ -85,5 +83,50 @@ public class Library {
         }
 
         return lowestAverageSubArray;
+    }
+
+    public List<String> analyzeWeatherData(int[][] weatherData) {
+        if (weatherData.length == 0) {
+            throw new IllegalArgumentException("Input array must not be empty.");
+        }
+
+        Set<Integer> temperatureSet = new HashSet<>();
+        int maxTemperature = Integer.MIN_VALUE;
+        int minTemperature = Integer.MAX_VALUE;
+
+        for (int i = 0; i < weatherData.length; i++) {
+            if (weatherData[i].length == 0) {
+                throw new IllegalArgumentException("Input array must not contain empty arrays.");
+            }
+
+            for (int j = 0; j< weatherData[i].length; j++) {
+                int temperature = weatherData[i][j];
+                if (!temperatureSet.contains(temperature)) {
+                    temperatureSet.add((temperature));
+                }
+                if (maxTemperature < temperature) {
+                    maxTemperature = temperature;
+                }
+                if (minTemperature > temperature) {
+                    minTemperature = temperature;
+                }
+            }
+        }
+
+        // Report high/low
+        System.out.printf("High: %d\n", maxTemperature);
+        System.out.printf("Low: %d\n", minTemperature);
+
+        // Iterate over the temperature range and add to unseenTemperatures
+        List<String> unseenTemperatures = new ArrayList<>();
+        for (int i = minTemperature + 1; i < maxTemperature - 1; i++) {
+            if (!temperatureSet.contains(i)) {
+                String unseenTemperature = String.format("Never saw temperature: %d", i);
+                unseenTemperatures.add(unseenTemperature);
+                System.out.println(unseenTemperature);
+            }
+        }
+
+        return unseenTemperatures;
     }
 }
