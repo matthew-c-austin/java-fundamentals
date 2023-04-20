@@ -16,6 +16,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
+    // Declaring ANSI_RESET so that we can reset the color
+    public static final String ANSI_RESET = "\u001B[0m";
+    // Declaring ANSI_GREEN to color the successful test souts :)
+    public static final String ANSI_GREEN = "\u001B[32m";
     @Test
     public void testMainThrowsExceptionWithNoArguments() throws IOException {
         try {
@@ -25,6 +29,7 @@ class AppTest {
             fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
         } catch (IllegalArgumentException e) {
             // the exception was thrown, the test passes
+            System.out.println(ANSI_GREEN + "testMainThrowsExceptionWithNoArguments() - test passed successfully" + ANSI_RESET);
         }
     }
 
@@ -37,6 +42,7 @@ class AppTest {
             fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
         } catch (IllegalArgumentException e) {
             // the exception was thrown, the test passes
+            System.out.println(ANSI_GREEN + "testMainThrowsExceptionWithWrongNumberOfArguments() - test passed successfully" + ANSI_RESET);
         }
     }
 
@@ -46,6 +52,8 @@ class AppTest {
         List<String> errorMessages = App.runLinter(path);
 
         assertEquals(0, errorMessages.size());
+
+        System.out.println(ANSI_GREEN + "testRunLinterNoErrors() - test passed successfully" + ANSI_RESET);
     }
 
     @Test
@@ -55,6 +63,8 @@ class AppTest {
 
         assertEquals(1, errorMessages.size());
         assertTrue(errorMessages.contains("Line 3: Missing semicolon.\n"));
+
+        System.out.println(ANSI_GREEN + "testRunLinterOneError() - test passed successfully" + ANSI_RESET);
     }
 
     @Test
@@ -66,6 +76,8 @@ class AppTest {
         assertTrue(errorMessages.contains("Line 3: Missing semicolon.\n"));
         assertTrue(errorMessages.contains("Line 5: Missing semicolon.\n"));
         assertTrue(errorMessages.contains("Line 11: Missing semicolon.\n"));
+
+        System.out.println(ANSI_GREEN + "testRunLinterFewErrors() - test passed successfully" + ANSI_RESET);
     }
 
     @Test
@@ -85,6 +97,8 @@ class AppTest {
         assertTrue(errorMessages.contains("Line 99: Missing semicolon.\n"));
         assertTrue(errorMessages.contains("Line 100: Missing semicolon.\n"));
         assertTrue(errorMessages.contains("Line 101: Missing semicolon.\n"));
+
+        System.out.println(ANSI_GREEN + "testRunLinterManyErrors() - test passed successfully" + ANSI_RESET);
     }
 
     @Test
@@ -93,5 +107,7 @@ class AppTest {
         List<String> errorMessages = App.runLinter(path);
 
         assertEquals(0, errorMessages.size());
+
+        System.out.println(ANSI_GREEN + "testRunLinterEmptyFile() - test passed successfully" + ANSI_RESET);
     }
 }
