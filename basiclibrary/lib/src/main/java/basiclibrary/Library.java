@@ -119,7 +119,7 @@ public class Library {
 
         // Iterate over the temperature range and add to unseenTemperatures
         List<String> unseenTemperatures = new ArrayList<>();
-        for (int i = minTemperature + 1; i < maxTemperature - 1; i++) {
+        for (int i = minTemperature + 1; i < maxTemperature; i++) {
             if (!temperatureSet.contains(i)) {
                 String unseenTemperature = String.format("Never saw temperature: %d", i);
                 unseenTemperatures.add(unseenTemperature);
