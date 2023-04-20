@@ -21,8 +21,12 @@ public class App {
             throw new IllegalArgumentException("Error: Too many arguments. Please follow the command format ./gradlew run --args /absolutePath/to/your/file.js");
         }
         Path path = Paths.get(args[0]).toAbsolutePath();
-       List<String> errorMessages = runLinter(path);
+        List<String> errorMessages = runLinter(path);
 
+        // Sout zero errors
+        if (errorMessages.isEmpty()) {
+            System.out.println("No errors found.");
+        }
         // Sout every error
         for (String errorMessage : errorMessages) {
             System.out.println(errorMessage);
