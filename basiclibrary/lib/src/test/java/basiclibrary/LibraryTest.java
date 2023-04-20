@@ -217,8 +217,8 @@ class LibraryTest {
     @Test void testTallyForEmptyList() {
         try {
             Library classUnderTest = new Library();
-            List<String> votesList = new ArrayList<>();
-            classUnderTest.tally(votesList);
+            List<String> votes = new ArrayList<>();
+            classUnderTest.tally(votes);
             // if the exception is not thrown, fail the test
             fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
         } catch (IllegalArgumentException e) {
@@ -229,8 +229,11 @@ class LibraryTest {
     @Test void testTallyForEmptyString() {
         try {
             Library classUnderTest = new Library();
-            List<String> votesList = Arrays.asList("Bush", "", "Hedge");
-            classUnderTest.tally(votesList);
+            List<String> votes = new ArrayList<>();
+            votes.add("Bush");
+            votes.add("");
+            votes.add("Hedge");
+            classUnderTest.tally(votes);
             // if the exception is not thrown, fail the test
             fail("Expected IllegalArgumentException to be thrown, but no exception was thrown.");
         } catch (IllegalArgumentException e) {

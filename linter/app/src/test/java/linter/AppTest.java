@@ -42,24 +42,24 @@ class AppTest {
 
     @Test
     public void testRunLinterNoErrors() throws Exception {
-        Path path = Paths.get("src/main/resources/gates-no-errors.js").toAbsolutePath();
+        Path path = Paths.get("src/test/resources/gates-no-errors.js").toAbsolutePath();
         List<String> errorMessages = App.runLinter(path);
 
         assertEquals(0, errorMessages.size());
     }
 
     @Test
-    public void testRunLinterOneErrors() throws Exception {
-        Path path = Paths.get("src/main/resources/gates-one-error.js").toAbsolutePath();
+    public void testRunLinterOneError() throws Exception {
+        Path path = Paths.get("src/test/resources/gates-one-error.js").toAbsolutePath();
         List<String> errorMessages = App.runLinter(path);
 
         assertEquals(1, errorMessages.size());
-        assertTrue(errorMessages.contains("Line 2: Missing semicolon.\n"));
+        assertTrue(errorMessages.contains("Line 3: Missing semicolon.\n"));
     }
 
     @Test
     public void testRunLinterFewErrors() throws Exception {
-        Path path = Paths.get("src/main/resources/gates-few-errors.js").toAbsolutePath();
+        Path path = Paths.get("src/test/resources/gates-few-errors.js").toAbsolutePath();
         List<String> errorMessages = App.runLinter(path);
 
         assertEquals(3, errorMessages.size());
@@ -70,7 +70,7 @@ class AppTest {
 
     @Test
     public void testRunLinterManyErrors() throws Exception {
-        Path path = Paths.get("src/main/resources/gates-many-errors.js").toAbsolutePath();
+        Path path = Paths.get("src/test/resources/gates-many-errors.js").toAbsolutePath();
         List<String> errorMessages = App.runLinter(path);
 
         assertEquals(11, errorMessages.size());
@@ -89,7 +89,7 @@ class AppTest {
 
     @Test
     public void testRunLinterEmptyFile() throws Exception {
-        Path path = Paths.get("src/main/resources/empty-file.js").toAbsolutePath();
+        Path path = Paths.get("src/test/resources/empty-file.js").toAbsolutePath();
         List<String> errorMessages = App.runLinter(path);
 
         assertEquals(0, errorMessages.size());
