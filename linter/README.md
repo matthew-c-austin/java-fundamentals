@@ -4,6 +4,7 @@ This linter app is a does a simple check to see if semicolons are present in Jav
 
 These are the only current rules for the linter:
 - The linter will not show an error if the line is empty.
+- The linter will not show an error if the line starts with `//`
 - The linter will not show an error if the line ends with an opening curly brace `{`
 - The linter will not show an error if the line ends with a closing curly brace `}`
 - The linter will not show an error if the line contains `if` or `else`
