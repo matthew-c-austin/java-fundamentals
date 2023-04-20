@@ -140,7 +140,6 @@ public class Library {
         // Use a hash map to tally the votes and keep track of the winner and initialize a currentWinner in the hash map
         String currentWinner = "";
         HashMap<String, Integer> votes = new HashMap<>();
-        votes.put(currentWinner, 0);
         // Keep track of the maximum number of votes
         int maxVotes = 0;
 
@@ -179,8 +178,8 @@ public class Library {
     public void updateVotes(String candidate, HashMap<String, Integer> votes) {
         if (!votes.containsKey(candidate)) {
             votes.put(candidate, 1);
+        } else {
+            votes.put(candidate, votes.get(candidate) + 1);
         }
-
-        votes.put(candidate, votes.get(candidate) + 1);
     }
 }
