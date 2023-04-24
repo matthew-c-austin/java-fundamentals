@@ -16,7 +16,7 @@ class ReviewTest {
 
     @BeforeEach
     public void setUp() {
-        this.restaurant = new Restaurant("Un Bien", 4, 2);
+        this.restaurant = new Restaurant("Un Bien", 2);
     }
     @Test
     public void testConstructor() {

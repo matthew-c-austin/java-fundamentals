@@ -8,19 +8,13 @@ import java.util.List;
 
 public class Restaurant {
     private String name;
-    private double stars;
+    private String chainName;
     private int priceCategory;
     private List<Review> reviews;
 
-    public Restaurant(String name, double stars, int priceCategory) {
+
+     public Restaurant(String name, int priceCategory) {
         this.name = name;
-
-        // Limit the stars to between 1 and 5
-        if (stars < 1 || stars > 5) {
-            throw new IllegalArgumentException("Stars must be between 1 and 5");
-        }
-        this.stars = stars;
-
         // Limit the price category between 1 and 4
         if (priceCategory < 1 || priceCategory > 4) {
             throw new IllegalArgumentException("Price category must be between 1 and 4");
@@ -29,11 +23,9 @@ public class Restaurant {
         this.reviews = new ArrayList<>();
     }
 
-    // We're going to handle the case where a restaurant's rating is only defined by the reviews it is given, instead of at instantiation. For this, we add an overloaded constructor.
-    public Restaurant(String name, int priceCategory) {
+    public Restaurant(String name, int priceCategory, String chainName) {
         this.name = name;
-        this.stars = 0;
-
+        this.chainName = chainName;
         // Limit the price category between 1 and 4
         if (priceCategory < 1 || priceCategory > 4) {
             throw new IllegalArgumentException("Price category must be between 1 and 4");
@@ -49,13 +41,6 @@ public class Restaurant {
         }
 
         reviews.add(review);
-        double totalStars = 0;
-
-        for (Review r: reviews) {
-            totalStars += r.getStars();
-        }
-
-        this.stars = totalStars / reviews.size();
     }
 
     @Override
@@ -64,31 +49,29 @@ public class Restaurant {
         for (int i = 0; i < priceCategory; i++) {
             dollarSigns.append("$");
         }
-        return String.format("Restaurant { name: \"%s\", stars: %.1f, priceCategory: \"%s\" }", name, stars, dollarSigns.toString());
+        return String.format("Restaurant { name: \"%s\", stars: %.1f, priceCategory: \"%s\" }", name, this.getStars(), dollarSigns);
+    }
+
+    public double getStars() {
+        if (this.reviews.isEmpty()) {
+            return 0;
+        }
+
+        double totalStars = 0;
+
+        for (Review review: this.reviews) {
+            totalStars += review.getStars();
+        }
+
+        return totalStars / this.reviews.size();
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getStars() {
-        return stars;
-    }
-
-    public void setStars(double stars) {
-        this.stars = stars;
-    }
-
     public int getPriceCategory() {
         return priceCategory;
-    }
-
-    public void setPriceCategory(int priceCategory) {
-        this.priceCategory = priceCategory;
     }
 
     public List<Review> getReviews() {

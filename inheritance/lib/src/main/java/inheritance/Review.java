@@ -7,7 +7,7 @@ public class Review {
     private String author;
     private int stars;
     private String body;
-    private Restaurant restaurant;
+    private final Restaurant restaurant;
 
     public Review(String author, int stars, String body, Restaurant restaurant) {
         this.author = author;
@@ -32,25 +32,18 @@ public class Review {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public int getStars() {
         return stars;
     }
 
-    public void setStars(int stars) {
-        this.stars = stars;
+    public void updateStars(int newStars) {
+        this.stars = newStars;
     }
 
     public String getBody() {
         return body;
     }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
 
     public Restaurant getRestaurant() {
         return restaurant;

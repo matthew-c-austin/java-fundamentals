@@ -13,33 +13,33 @@ class RestaurantTest {
     public static final String ANSI_RESET = "\u001B[0m";
 
     @Test void testConstructor() {
-        Restaurant classUnderTest = new Restaurant("Un Bien", 4, 2);
+        Restaurant classUnderTest = new Restaurant("Un Bien", 2);
         assertEquals(classUnderTest.getName(), "Un Bien");
-        assertEquals(classUnderTest.getStars(), 4, 0.00001);
+        assertEquals(classUnderTest.getStars(), 0, 0.00001);
         assertEquals(classUnderTest.getPriceCategory(), 2);
         System.out.println(ANSI_GREEN + "testConstructor() - test passed successfully" + ANSI_RESET);
     }
 
     @Test void testConstructorThrowsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Restaurant("Invalid Stars", 6, 2));
-        assertThrows(IllegalArgumentException.class, () -> new Restaurant("Invalid Price Category", 4, 6));
+        assertThrows(IllegalArgumentException.class, () -> new Restaurant("Invalid Price Category", 6));
         System.out.println(ANSI_GREEN + "testConstructorThrowsIllegalArgumentException() - test passed successfully" + ANSI_RESET);
     }
 
     @Test
     public void testToString() {
-        Restaurant classUnderTest = new Restaurant("Un Bien", 4, 2);
-        assertEquals("Restaurant { name: \"Un Bien\", stars: 4.0, priceCategory: \"$$\" }", classUnderTest.toString());
+        Restaurant classUnderTest = new Restaurant("Un Bien", 2);
+        assertEquals("Restaurant { name: \"Un Bien\", stars: 0.0, priceCategory: \"$$\" }", classUnderTest.toString());
         System.out.println(ANSI_GREEN + "testToString() - test passed successfully" + ANSI_RESET);
     }
 
     @Test
     public void testRestaurantReviewAssociation() {
-        Restaurant classUnderTest = new Restaurant("Un Bien", 4, 2);
+        Restaurant classUnderTest = new Restaurant("Un Bien", 2);
         Review review = new Review("Mr. Critic", 5, "Tasty burritos and sandwiches!", classUnderTest);
 
         assertEquals(1, classUnderTest.getReviews().size());
         assertTrue(classUnderTest.getReviews().contains(review));
+        System.out.println(ANSI_GREEN + "testRestaurantReviewAssociation() - test passed successfully" + ANSI_RESET);
     }
 
     @Test
@@ -54,6 +54,7 @@ class RestaurantTest {
         classUnderTest.addReview(reviewOne);
         // Check if the average star rating is still 4.5
         assertEquals(3, classUnderTest.getStars(), 0.001);
+        System.out.println(ANSI_GREEN + "testStarRatingUpdate() - test passed successfully" + ANSI_RESET);
     }
 
 }
