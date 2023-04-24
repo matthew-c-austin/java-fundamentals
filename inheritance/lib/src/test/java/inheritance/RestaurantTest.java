@@ -15,8 +15,7 @@ class RestaurantTest {
     @Test void testConstructor() {
         Restaurant classUnderTest = new Restaurant("Un Bien", 4, 2);
         assertEquals(classUnderTest.getName(), "Un Bien");
-        double delta = 0.00001;
-        assertEquals(classUnderTest.getStars(), 4, delta);
+        assertEquals(classUnderTest.getStars(), 4, 0.00001);
         assertEquals(classUnderTest.getPriceCategory(), 2);
         System.out.println(ANSI_GREEN + "testConstructor() - test passed successfully" + ANSI_RESET);
     }
@@ -41,6 +40,20 @@ class RestaurantTest {
 
         assertEquals(1, classUnderTest.getReviews().size());
         assertTrue(classUnderTest.getReviews().contains(review));
+    }
+
+    @Test
+    public void testStarRatingUpdate() {
+        Restaurant classUnderTest = new Restaurant("Un Bien", 2);
+        Review reviewOne = new Review("Mr. Critic", 5, "Tasty burritos and sandwiches!", classUnderTest);
+        Review reviewTwo = new Review("Mrs. Critic", 1, "Awful burritos and sandwiches!", classUnderTest);
+
+        assertEquals(3, classUnderTest.getStars(), 0.001);
+
+        // Add the same review again and check if the star rating remains the same
+        classUnderTest.addReview(reviewOne);
+        // Check if the average star rating is still 4.5
+        assertEquals(3, classUnderTest.getStars(), 0.001);
     }
 
 }

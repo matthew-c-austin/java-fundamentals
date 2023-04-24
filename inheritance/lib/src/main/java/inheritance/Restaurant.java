@@ -29,8 +29,33 @@ public class Restaurant {
         this.reviews = new ArrayList<>();
     }
 
+    // We're going to handle the case where a restaurant's rating is only defined by the reviews it is given, instead of at instantiation. For this, we add an overloaded constructor.
+    public Restaurant(String name, int priceCategory) {
+        this.name = name;
+        this.stars = 0;
+
+        // Limit the price category between 1 and 4
+        if (priceCategory < 1 || priceCategory > 4) {
+            throw new IllegalArgumentException("Price category must be between 1 and 4");
+        }
+        this.priceCategory = priceCategory;
+        this.reviews = new ArrayList<>();
+    }
+
     public void addReview(Review review) {
+        // Test to see if the review exists
+        if (reviews.contains(review)) {
+            return;
+        }
+
         reviews.add(review);
+        double totalStars = 0;
+
+        for (Review r: reviews) {
+            totalStars += r.getStars();
+        }
+
+        this.stars = totalStars / reviews.size();
     }
 
     @Override
