@@ -27,4 +27,11 @@ class RestaurantTest {
         System.out.println(ANSI_GREEN + "testConstructorThrowsIllegalArgumentException() - test passed successfully" + ANSI_RESET);
     }
 
+    @Test
+    public void testToString() {
+        Restaurant classUnderTest = new Restaurant("Un Bien", 4, 2);
+        assertEquals("Restaurant { name: \"Un Bien\", stars: 4.0, priceCategory: \"$$\" }", classUnderTest.toString());
+        System.out.println(ANSI_GREEN + "testToString() - test passed successfully" + ANSI_RESET);
+    }
+
 }
