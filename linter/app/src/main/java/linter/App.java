@@ -35,6 +35,7 @@ public class App {
 
     public static List<String> runLinter(Path filePath) throws IOException {
         List<String> errorMessages = new ArrayList<>();
+
         try (Scanner scanner = new Scanner(filePath)) {
             int lineNumber = 1;
             while (scanner.hasNextLine()) {
