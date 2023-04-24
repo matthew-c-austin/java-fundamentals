@@ -7,17 +7,20 @@ public class Review {
     private String author;
     private int stars;
     private String body;
+    private Restaurant restaurant;
 
-    public Review(String author, int stars, String body) {
+    public Review(String author, int stars, String body, Restaurant restaurant) {
         this.author = author;
 
         // Limit the stars to between 1 and 5
         if (stars < 1 || stars > 5) {
             throw new IllegalArgumentException("Stars must be between 1 and 5");
         }
-        this.stars = stars;
 
+        this.stars = stars;
         this.body = body;
+        this.restaurant = restaurant;
+        restaurant.addReview(this);
     }
 
     @Override
@@ -47,5 +50,9 @@ public class Review {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 }

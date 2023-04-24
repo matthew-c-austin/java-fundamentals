@@ -34,4 +34,13 @@ class RestaurantTest {
         System.out.println(ANSI_GREEN + "testToString() - test passed successfully" + ANSI_RESET);
     }
 
+    @Test
+    public void testRestaurantReviewAssociation() {
+        Restaurant classUnderTest = new Restaurant("Un Bien", 4, 2);
+        Review review = new Review("Mr. Critic", 5, "Tasty burritos and sandwiches!", classUnderTest);
+
+        assertEquals(1, classUnderTest.getReviews().size());
+        assertTrue(classUnderTest.getReviews().contains(review));
+    }
+
 }

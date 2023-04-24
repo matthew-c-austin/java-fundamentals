@@ -3,10 +3,14 @@
  */
 package inheritance;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Restaurant {
     private String name;
     private double stars;
     private int priceCategory;
+    private List<Review> reviews;
 
     public Restaurant(String name, double stars, int priceCategory) {
         this.name = name;
@@ -22,6 +26,11 @@ public class Restaurant {
             throw new IllegalArgumentException("Price category must be between 1 and 4");
         }
         this.priceCategory = priceCategory;
+        this.reviews = new ArrayList<>();
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
     }
 
     @Override
@@ -55,5 +64,9 @@ public class Restaurant {
 
     public void setPriceCategory(int priceCategory) {
         this.priceCategory = priceCategory;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
     }
 }
