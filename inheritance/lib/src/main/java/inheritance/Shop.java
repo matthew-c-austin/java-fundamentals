@@ -4,9 +4,14 @@ public class Shop extends Destination{
     // Fields
     private final String description;
 
-    // Constructor
+    // Constructors
     public Shop(String name, int priceCategory, String description) {
         super(name, priceCategory);
+        this.description =  description;
+    }
+
+    public Shop(String name, int priceCategory, String description, String chainName) {
+        super(name, priceCategory, chainName);
         this.description =  description;
     }
 

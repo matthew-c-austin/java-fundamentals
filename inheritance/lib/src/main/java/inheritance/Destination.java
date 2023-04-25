@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Destination implements Reviewable {
     // Fields
-    private String name;
+    private final String name;
     private String chainName;
-    private int priceCategory;
-    private List<Review> reviews;
+    private final int priceCategory;
+    private final List<Review> reviews;
 
     // Constructors
     public Destination(String name, int priceCategory) {
