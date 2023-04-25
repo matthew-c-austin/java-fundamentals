@@ -79,4 +79,8 @@ public class Destination implements Reviewable {
     public List<Review> getReviews() {
         return reviews;
     }
+
+    public String getChainName() {
+        return chainName;
+    }
 }

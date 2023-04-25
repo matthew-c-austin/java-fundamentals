@@ -5,9 +5,9 @@ package inheritance;
 
 public class Review {
     // Fields
-    private String author;
+    private final String author;
     private int stars;
-    private String body;
+    private final String body;
     private final Destination destination;
 
     // Constructor
