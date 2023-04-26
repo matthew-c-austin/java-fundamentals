@@ -6,8 +6,7 @@ package inheritance;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TheaterReviewTest {
     // Declaring ANSI_GREEN to color the successful test souts :)
@@ -41,6 +40,11 @@ class TheaterReviewTest {
         System.out.println(ANSI_GREEN + "testConstructor() - test passed successfully" + ANSI_RESET);
     }
 
+    @Test void testConstructorThrowsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new TheaterReview("Invalid Stars", 6, "Savory movies and even savory-er popcorn!", Theater));
+        System.out.println(ANSI_GREEN + "testConstructorThrowsIllegalArgumentException() - test passed successfully" + ANSI_RESET);
+    }
+
     @Test
     public void testToString() {
         TheaterReview classUnderTest = new TheaterReview("Mr. Critic", 5, "Savory movies and even savory-er popcorn!", Theater);
@@ -54,10 +58,4 @@ class TheaterReviewTest {
         assertEquals("TheaterReview { author: \"Mr. Critic\", stars: 5, movieTitle: \"Koyaanisqatsi\", body: \"Why would they even show that? It's not even a movie.\" }", classUnderTest.toString());
         System.out.println(ANSI_GREEN + "testToString() - test passed successfully" + ANSI_RESET);
     }
-
-    @Test void testConstructorThrowsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new TheaterReview("Invalid Stars", 6, "Savory movies and even savory-er popcorn!", Theater));
-        System.out.println(ANSI_GREEN + "testConstructorThrowsIllegalArgumentException() - test passed successfully" + ANSI_RESET);
-    }
-
 }
