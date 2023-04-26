@@ -4,6 +4,80 @@ Code Fellows 401 Labs 1-10
 
 ## Changelog
 
+### 2023-04-25T19:00-08:00
+
+- Modified `inheritance` directory with Lab 07 assignment which contains the functions and tests shown in the tree below.
+
+```bash
+├───inheritance
+│   └───lib
+│       └───src
+│           ├───main
+│           │   ├───java
+│           │   │   └───inheritance
+│           │   │       └───Destination
+│           │   │       |   |         └───addReview()
+│           │   │       |   |         └───toString()
+│           │   │       |   |         └───getStars()
+│           │   │       |   |         └───getName()
+│           │   │       |   |         └───getPriceCategory()
+│           │   │       |   |         └───getReviews()
+│           │   │       |   └───Restaurant
+│           │   │       |   └───Shop
+│           │   │       |   |      └───toString()
+│           │   │       |   └───Theater
+│           │   │       |             └───addMovie()
+│           │   │       |             └───removeMovie()
+│           │   │       |             └───toString()
+│           │   │       |             └───getNowShowingList()
+│           │   │       └───Review
+│           │   │           |    └───addReview()
+│           │   │           |    └───toString()
+│           │   │           |    └───getStars()
+│           │   │           |    └───updateStars()
+│           │   │           |    └───getBody()
+│           │   │           |    └───getRestaurant()
+│           │   │           └───TheaterReview
+│           │   │                           └───toString()
+│           │   │                           └───getMovie()
+│           └───test
+│               ├───java
+│               │   └───inheritance
+│               │       └───RestaurantTest
+│               │       |   └───testConstructor()
+│               │       |   └───testConstructorThrowsIllegalArgumentException()
+│               │       |   └───testToString()
+│               │       |   └───testRestaurantReviewAssociation()
+│               │       |   └───testStarRatingUpdate()
+│               │       |   └───getReviews()
+│               │       └───ReviewTest
+│               │       |   └───testConstructor()
+│               │       |   └───testConstructorThrowsIllegalArgumentException()
+│               │       |   └───testToString()
+│               │       └───ShopTest
+│               │       |   └───testConstructor()
+│               │       |   └───testConstructorThrowsIllegalArgumentException()
+│               │       |   └───testToString()
+│               │       |   └───testShopReviewAssociation()
+│               │       |   └───testStarRatingUpdate()
+│               │       |   └───getReviews()
+│               │       └───TheaterReviewTest
+│               │       |   └───testConstructor()
+│               │       |   └───testConstructorWithMovieTitle()
+│               │       |   └───testConstructorThrowsIllegalArgumentException()
+│               │       |   └───testToString()
+│               │       |   └───testToStringWithMovieTitle()
+│               │       └───TheaterTest
+│               │           └───testConstructor()
+│               │           └───testConstructorThrowsIllegalArgumentException()
+│               │           └───testAddMovie()
+│               │           └───testRemoveMovie()
+│               │           └───testToString()
+│               │           └───testTheaterReviewAssociation()
+│               │           └───testStarRatingUpdate()
+│               └───resources
+```
+
 ### 2023-04-24T18:23-08:00
 
 - Added `inheritance` directory with Lab 06 assignment which contains the functions and tests shown in the tree below.
