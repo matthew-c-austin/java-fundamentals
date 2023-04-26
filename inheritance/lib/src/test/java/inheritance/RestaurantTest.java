@@ -56,5 +56,4 @@ class RestaurantTest {
         assertEquals(3, classUnderTest.getStars(), 0.001);
         System.out.println(ANSI_GREEN + "testStarRatingUpdate() - test passed successfully" + ANSI_RESET);
     }
-
 }

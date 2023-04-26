@@ -24,7 +24,7 @@ class ReviewTest {
         assertEquals("Tasty burritos and sandwiches!", classUnderTest.getBody());
         assertEquals("Mr. Critic", classUnderTest.getAuthor());
         assertEquals(5, classUnderTest.getStars());
-        assertEquals(restaurant, classUnderTest.getRestaurant());
+        assertEquals(restaurant, classUnderTest.getDestination());
         System.out.println(ANSI_GREEN + "testConstructor() - test passed successfully" + ANSI_RESET);
     }
 
